@@ -1,0 +1,12 @@
+c:\users\programacion\documents\visual studio 2013\Projects\Contabanca1.0\Contabanca1.0\bin\Debug\Contabanca1.0.exe
+c:\users\programacion\documents\visual studio 2013\Projects\Contabanca1.0\Contabanca1.0\bin\Debug\Contabanca1.0.pdb
+c:\users\programacion\documents\visual studio 2013\Projects\Contabanca1.0\Contabanca1.0\obj\Debug\Contabanca1.0.csprojResolveAssemblyReference.cache
+c:\users\programacion\documents\visual studio 2013\Projects\Contabanca1.0\Contabanca1.0\obj\Debug\Contabanca1._0.Form1.resources
+c:\users\programacion\documents\visual studio 2013\Projects\Contabanca1.0\Contabanca1.0\obj\Debug\Contabanca1._0.Properties.Resources.resources
+c:\users\programacion\documents\visual studio 2013\Projects\Contabanca1.0\Contabanca1.0\obj\Debug\Contabanca1.0.csproj.GenerateResource.Cache
+c:\users\programacion\documents\visual studio 2013\Projects\Contabanca1.0\Contabanca1.0\obj\Debug\Contabanca1.0.exe
+c:\users\programacion\documents\visual studio 2013\Projects\Contabanca1.0\Contabanca1.0\obj\Debug\Contabanca1.0.pdb
+c:\users\programacion\documents\visual studio 2013\Projects\Contabanca1.0\Contabanca1.0\bin\Debug\Contabanca1.0.exe.config
+C:\Users\PROGRAMACION\documents\visual studio 2013\Projects\Contabanca1.0\Contabanca1.0\obj\Debug\Contabanca1.0.exe.licenses
+C:\Users\PROGRAMACION\Documents\Visual Studio 2013\Projects\Contabanca1.0\Contabanca1.0\bin\Debug\Clases.dll
+C:\Users\PROGRAMACION\Documents\Visual Studio 2013\Projects\Contabanca1.0\Contabanca1.0\bin\Debug\Clases.pdb
