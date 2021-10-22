@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="contabanca" Class="BaseDeDatosDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=contabanca;User ID=sa" SettingsObjectName="Clases.Properties.Settings" SettingsPropertyName="contabancaConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tbl_acceso" Member="tbl_acceso">
+    <Type Name="tbl_acceso">
+      <Column Name="id_acceso" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ususario" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="contraseña" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Cargo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="tbl_vendedor_tbl_acceso" Member="tbl_vendedor" ThisKey="id_acceso" OtherKey="id_vendedor" Type="tbl_vendedor" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_VentasDiarias" Member="tbl_VentasDiarias">
+    <Type Name="tbl_VentasDiarias">
+      <Column Name="Id_Venta" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Producto" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="VentaTotal" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Ganancias" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Id_TipoProducto" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="tbl_VentasDiarias_tbl_CajaChica" Member="tbl_CajaChica" ThisKey="Id_Venta" OtherKey="Id_Caja" Type="tbl_CajaChica" Cardinality="One" />
+      <Association Name="tbl_VentasDiarias_tbl_CatalogoCuenta" Member="tbl_CatalogoCuenta" ThisKey="Id_Venta" OtherKey="id_catalogoCuenta" Type="tbl_CatalogoCuenta" Cardinality="One" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_CajaChica" Member="tbl_CajaChica">
+    <Type Name="tbl_CajaChica">
+      <Column Name="Id_Caja" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TotalIngresos" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="TotalEgresos" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="SaldoEnCaja" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Association Name="tbl_CajaChica_tbl_IngresosDeCaja" Member="tbl_IngresosDeCaja" ThisKey="Id_Caja" OtherKey="Id_IngresosCaja" Type="tbl_IngresosDeCaja" Cardinality="One" />
+      <Association Name="tbl_VentasDiarias_tbl_CajaChica" Member="tbl_VentasDiarias" ThisKey="Id_Caja" OtherKey="Id_Venta" Type="tbl_VentasDiarias" IsForeignKey="true" />
+      <Association Name="tbl_IngresosPorFactura_tbl_CajaChica" Member="tbl_IngresosPorFactura" ThisKey="Id_Caja" OtherKey="Id_IngresosPorFactura" Type="tbl_IngresosPorFactura" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_CatalogoCuenta" Member="tbl_CatalogoCuenta">
+    <Type Name="tbl_CatalogoCuenta">
+      <Column Name="id_catalogoCuenta" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Activo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Pasivo" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Capital" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Debe" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Haber" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Association Name="tbl_VentasDiarias_tbl_CatalogoCuenta" Member="tbl_VentasDiarias" ThisKey="id_catalogoCuenta" OtherKey="Id_Venta" Type="tbl_VentasDiarias" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_categoria" Member="tbl_categoria">
+    <Type Name="tbl_categoria">
+      <Column Name="id_categoria" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="categoria" Type="System.String" DbType="VarChar(45) NOT NULL" CanBeNull="false" />
+      <Column Name="estado" Type="System.String" DbType="VarChar(45) NOT NULL" CanBeNull="false" />
+      <Association Name="tbl_categoria_tbl_producto" Member="tbl_producto" ThisKey="id_categoria" OtherKey="id_categoria" Type="tbl_producto" />
+    </Type>
+  </Table>
+  <Table Name="dbo.[Tbl_Clientes _credito]" Member="Tbl_Clientes__credito">
+    <Type Name="Tbl_Clientes__credito">
+      <Column Name="id_Cliente" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="apellidos" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Direccion" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Telefono" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Cedula" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Tbl_Clientes__credito_Tbl_Factura" Member="Tbl_Factura" ThisKey="id_Cliente" OtherKey="id_ClienteCredito" Type="Tbl_Factura" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_detalle_venta" Member="tbl_detalle_venta">
+    <Type Name="tbl_detalle_venta">
+      <Column Name="id_venta" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_factura" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_producto" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="precio_unit" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="cantidad" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="descuento" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="total_venta" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Association Name="Tbl_Factura_tbl_detalle_venta" Member="Tbl_Factura" ThisKey="id_factura" OtherKey="id_Factura" Type="Tbl_Factura" IsForeignKey="true" />
+      <Association Name="tbl_producto_tbl_detalle_venta" Member="tbl_producto" ThisKey="id_venta" OtherKey="id_producto" Type="tbl_producto" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_EgresosCaja" Member="tbl_EgresosCaja">
+    <Type Name="tbl_EgresosCaja">
+      <Column Name="Id_EgresosCaja" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id_Caja" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Monto" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_Hora" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="tbl_IngresosDeCaja_tbl_EgresosCaja" Member="tbl_IngresosDeCaja" ThisKey="Id_EgresosCaja" OtherKey="Id_IngresosCaja" Type="tbl_IngresosDeCaja" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_Existencia" Member="tbl_Existencia">
+    <Type Name="tbl_Existencia">
+      <Column Name="id_Existencia" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NombreExistencia" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="PrecioUnidad" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="UnidadExistencia" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="id_categoria" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="tbl_producto_tbl_Existencia" Member="tbl_producto" ThisKey="id_Existencia" OtherKey="id_producto" Type="tbl_producto" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tbl_Factura" Member="Tbl_Factura">
+    <Type Name="Tbl_Factura">
+      <Column Name="id_Factura" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_ClienteCredito" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_Tipo" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_vendedor" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Nombre_ClienteContado" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Estado" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Sub_Total" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Iva" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="Total_Factura" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Association Name="Tbl_Factura_tbl_detalle_venta" Member="tbl_detalle_venta" ThisKey="id_Factura" OtherKey="id_factura" Type="tbl_detalle_venta" />
+      <Association Name="Tbl_Clientes__credito_Tbl_Factura" Member="Tbl_Clientes__credito" ThisKey="id_ClienteCredito" OtherKey="id_Cliente" Type="Tbl_Clientes__credito" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="tbl_Tipo_Tbl_Factura" Member="tbl_Tipo" ThisKey="id_Tipo" OtherKey="id_tipo" Type="tbl_Tipo" IsForeignKey="true" />
+      <Association Name="tbl_vendedor_Tbl_Factura" Member="tbl_vendedor" ThisKey="id_vendedor" OtherKey="id_vendedor" Type="tbl_vendedor" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_IngresosDeCaja" Member="tbl_IngresosDeCaja">
+    <Type Name="tbl_IngresosDeCaja">
+      <Column Name="Id_IngresosCaja" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Id_Caja" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Monto" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="Fecha_Hora" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="tbl_IngresosDeCaja_tbl_EgresosCaja" Member="tbl_EgresosCaja" ThisKey="Id_IngresosCaja" OtherKey="Id_EgresosCaja" Type="tbl_EgresosCaja" Cardinality="One" />
+      <Association Name="tbl_CajaChica_tbl_IngresosDeCaja" Member="tbl_CajaChica" ThisKey="Id_IngresosCaja" OtherKey="Id_Caja" Type="tbl_CajaChica" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_IngresosPorFactura" Member="tbl_IngresosPorFactura">
+    <Type Name="tbl_IngresosPorFactura">
+      <Column Name="Id_IngresosPorFactura" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="id_Caja" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Id_Factura" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Montototal" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Association Name="tbl_IngresosPorFactura_tbl_CajaChica" Member="tbl_CajaChica" ThisKey="Id_IngresosPorFactura" OtherKey="Id_Caja" Type="tbl_CajaChica" Cardinality="One" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_producto" Member="tbl_producto">
+    <Type Name="tbl_producto">
+      <Column Name="id_producto" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_categoria" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="producto" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="modelo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="caracteristicas" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="existencia" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="precio_compra" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="precio_venta" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Column Name="estado" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="tbl_producto_tbl_detalle_venta" Member="tbl_detalle_venta" ThisKey="id_producto" OtherKey="id_venta" Type="tbl_detalle_venta" Cardinality="One" />
+      <Association Name="tbl_producto_tbl_Existencia" Member="tbl_Existencia" ThisKey="id_producto" OtherKey="id_Existencia" Type="tbl_Existencia" />
+      <Association Name="tbl_categoria_tbl_producto" Member="tbl_categoria" ThisKey="id_categoria" OtherKey="id_categoria" Type="tbl_categoria" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_Tipo" Member="tbl_Tipo">
+    <Type Name="tbl_Tipo">
+      <Column Name="id_tipo" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Tipo" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="tbl_Tipo_Tbl_Factura" Member="Tbl_Factura" ThisKey="id_tipo" OtherKey="id_Tipo" Type="Tbl_Factura" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_vendedor" Member="tbl_vendedor">
+    <Type Name="tbl_vendedor">
+      <Column Name="id_vendedor" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_acceso" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="nombre" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="apellidos" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="tbl_vendedor_tbl_acceso" Member="tbl_acceso" ThisKey="id_vendedor" OtherKey="id_acceso" Type="tbl_acceso" Cardinality="One" />
+      <Association Name="tbl_vendedor_Tbl_Factura" Member="Tbl_Factura" ThisKey="id_vendedor" OtherKey="id_vendedor" Type="Tbl_Factura" />
+    </Type>
+  </Table>
+</Database>

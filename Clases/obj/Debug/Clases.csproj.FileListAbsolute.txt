@@ -1,0 +1,6 @@
+C:\Users\PROGRAMACION\Documents\Visual Studio 2013\Projects\Contabanca1.0\Clases\obj\Debug\Clases.csprojResolveAssemblyReference.cache
+C:\Users\PROGRAMACION\Documents\Visual Studio 2013\Projects\Contabanca1.0\Clases\bin\Debug\Clases.dll.config
+C:\Users\PROGRAMACION\Documents\Visual Studio 2013\Projects\Contabanca1.0\Clases\bin\Debug\Clases.dll
+C:\Users\PROGRAMACION\Documents\Visual Studio 2013\Projects\Contabanca1.0\Clases\bin\Debug\Clases.pdb
+C:\Users\PROGRAMACION\Documents\Visual Studio 2013\Projects\Contabanca1.0\Clases\obj\Debug\Clases.dll
+C:\Users\PROGRAMACION\Documents\Visual Studio 2013\Projects\Contabanca1.0\Clases\obj\Debug\Clases.pdb
